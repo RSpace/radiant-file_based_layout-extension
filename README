@@ -1,0 +1,43 @@
+= File Based Layout
+
+This extension allows pages served by Radiant to share a standard file-based Rails layout with Rails-generated pages. Full ERb can be used as normal in the layout, however, Radiant tags cannot currently be used in the layouts.
+
+Tested with Radiant 0.6.2
+
+== Installation
+
+1. Place this extension in the RAILS_ROOT/vendor/extensions/file_based_layout directory
+2. Run % rake db:migrate:extensions
+
+== Usage
+
+You must have a Rails layout file ready in the app/views/layouts/ directory of Radiant or an extension.
+
+=== The Rails layout (.rhtml) file
+
+There are no special requirements to the layout file. It contain anything a normal Rails app will accept.
+
+The body page part is always rendered where it says <%= yield %> in the layout. Other page parts are rendered where they yielded by their name.
+
+For instance, the page part "extended" are rendered where the layout says <%= yield :extended %>.
+
+=== The Radiant Administration interface
+
+Create a new layout from the "Layouts tab". Click the "More" link below the "Name" text-box, and select a layout file. Any contents in the "Body" text area will be ignored.
+
+Any page that has this new Layout, or has inherited the layout, will now render using the selected Rails layout file.
+
+== Changes made by this extension
+
+* layout_file field added to the Layouts table
+* file_based? method added to the Layout model
+* SiteController's show_uncached_page method overridden to render using a file-based layout, or normal
+* Render methods added to SiteController (eventually forwarding to Page's render methods), to be able to map various page parts to different content snippets in the layout
+* LayoutController's new and edit method changed to supply list of layout files to the view
+* Layout File drop-down list added to the Layout edit view (overridden by the extension)
+
+== About the author
+
+Casper Fabricius is a Danish Rails and Radiant developer living in Copenhagen.
+Weblog: http://casperfabricius.com
+Email: me@casperfabricius.com
