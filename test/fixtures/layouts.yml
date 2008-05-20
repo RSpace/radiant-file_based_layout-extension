@@ -29,4 +29,4 @@ file_based:
   name: File Based Layout
   content_type: text/html;charset=utf8
   content:
-  layout_file: file_based_layout_test.rhtml
+  layout_file: file_based_layout_test.html.erb

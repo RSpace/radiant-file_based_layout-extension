@@ -1,0 +1,6 @@
+- if @layout_files
+  %tr
+    %th.label
+      %label{:for=>"layout_layout_file"} Layout File
+    %td.field
+      = select 'layout', 'layout_file', @layout_files

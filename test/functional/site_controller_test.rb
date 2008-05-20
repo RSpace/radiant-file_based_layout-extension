@@ -28,7 +28,6 @@ class SiteControllerTest < Test::Unit::TestCase
 
   def test_show_page_with_file_based_layout
     get :show_page, :url => pages(:page_with_file_based_layout).slug
-    #breakpoint
     assert_response :success
     assert_match %r{<h1>Body:</h1>}, @response.body
     assert_match %r{Body: Page With File Based Layout}, @response.body
