@@ -1,8 +1,8 @@
 = File Based Layout
 
-This extension allows pages served by Radiant to share a standard file-based Rails layout with Rails-generated pages. Full ERb can be used as normal in the layout, however, Radiant tags cannot currently be used in the layouts.
+This extension allows pages served by Radiant to share a standard file-based Rails layout with Rails-generated pages. Full ERb, HAML or any other rendering engine can be used as normal in the layout, however, Radiant tags cannot currently be used in the layouts.
 
-Tested with Radiant 0.6.2
+Tested with Radiant 0.6.7
 
 == Installation
 
@@ -13,7 +13,7 @@ Tested with Radiant 0.6.2
 
 You must have a Rails layout file ready in the app/views/layouts/ directory of Radiant or an extension.
 
-=== The Rails layout (.rhtml) file
+=== The Rails layout (typically .html.erb) file
 
 There are no special requirements to the layout file. It contain anything a normal Rails app will accept.
 
@@ -31,10 +31,10 @@ Any page that has this new Layout, or has inherited the layout, will now render 
 
 * layout_file field added to the Layouts table
 * file_based? method added to the Layout model
-* SiteController's show_uncached_page method overridden to render using a file-based layout, or normal
+* SiteController's process_page method aliased to render using a file-based layout, or normal
 * Render methods added to SiteController (eventually forwarding to Page's render methods), to be able to map various page parts to different content snippets in the layout
 * LayoutController's new and edit method changed to supply list of layout files to the view
-* Layout File drop-down list added to the Layout edit view (overridden by the extension)
+* Layout File drop-down list added to the Layout edit view (using shards)
 
 == About the author
 
