@@ -20,6 +20,7 @@ module FileBasedLayout
       end
       
       def process_with_file_based_layout(page)
+        [:request, :response].each { |var| page.instance_variable_set("@#{var}", send(var)) }
         content_type = page.layout.content_type.to_s.strip
         response.headers['Content-Type'] = content_type unless content_type.empty?
         headers.each { |k,v| response.headers[k] = v }

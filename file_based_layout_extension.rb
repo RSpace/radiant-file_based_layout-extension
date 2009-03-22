@@ -11,7 +11,7 @@ class FileBasedLayoutExtension < Radiant::Extension
   def activate
     Layout.send :include, FileBasedLayout::LayoutExt
     SiteController.send :include, FileBasedLayout::SiteControllerExt
-    Admin::LayoutController.send :include, FileBasedLayout::LayoutControllerExt
+    Admin::LayoutsController.send :include, FileBasedLayout::LayoutControllerExt
     admin.layout.edit.add :extended_metadata, 'file_based_layout_column'
     #page.index.add :node, 'file_based_layout_column'
   end
